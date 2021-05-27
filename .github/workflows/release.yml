@@ -1,0 +1,45 @@
+name: release
+
+on: 
+  push:
+    tags:
+      - 'v*' 
+
+env:
+  flutter_version: "2.2.0"
+  
+jobs:
+  build_deploy:
+    name: Build apk and release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v1
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: ${{ runner.OS }}-flutter-install-cache-${{ env.flutter_version }}
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: ${{ env.flutter_version }}
+          channel: 'stable'
+      - run: flutter pub get
+      # build Android version
+      - name: Create env file
+        run: |
+          touch .env
+          echo API_KEY=${{ secrets.API_KEY }} >> .env
+          cat .env
+      - run: flutter build apk --split-per-abi
+      # This action will create a github release and optionally upload an artifact to it.
+      # https://github.com/ncipollo/release-action
+      - name: Extract release notes
+        id: extract-release-notes
+        uses: ffurrer2/extract-release-notes@v1
+      - name: Create a Release APK
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/apk/release/*.apk"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: ${{ steps.extract-release-notes.outputs.release_notes }}
+  

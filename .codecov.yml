@@ -1,0 +1,5 @@
+ignore:
+  - '**/**/**/*.g.dart'
+  - '**/**/**/*.freezed.dart'
+  - '**/**/**/**/*.g.dart'
+  - '**/**/**/**/*.freezed.dart'

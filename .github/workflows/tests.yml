@@ -1,0 +1,128 @@
+#The name of your workflow.
+name:  test
+# Trigger the workflow on push or pull request
+on: [push,pull_request_review]
+env:
+  flutter_version: "2.2.0"
+  
+#A workflow run is made up of one or more jobs. Jobs run in parallel by default.
+jobs:
+
+  unit-testing:
+    #The type of machine to run the job on. [windows,macos, ubuntu , self-hosted]
+    runs-on: ubuntu-latest
+    #sequence of tasks called
+    steps:
+      # The branch or tag ref that triggered the workflow will be checked out.
+      # https://github.com/actions/checkout
+      - uses: actions/checkout@v1
+      # Setup a flutter environment.
+      # https://github.com/marketplace/actions/flutter-action
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v1
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: ${{ runner.OS }}-flutter-install-cache-${{ env.flutter_version }}
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '${{ env.flutter_version }}'
+          channel: 'stable'
+      - name: Create env file
+        run: |
+          touch .env
+          echo API_KEY=${{ secrets.API_KEY }} >> .env
+          cat .env
+      - run: flutter pub get
+      # run static analys code
+      - run: flutter  analyze
+      # run  flutter widgets tests  and unit tests
+      - run: flutter test --coverage
+      # Upload coverage reports to Codecov
+      # https://github.com/marketplace/actions/codecov
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: coverage/lcov.info
+  ios-integration:
+    #creates a build matrix for your jobs
+    strategy:
+      #set of different configurations of the virtual environment.
+      matrix:
+        device:
+          - "iPhone 8 (14.4)"
+          - "iPhone 12 Pro Max (14.4)"
+      fail-fast: false
+    runs-on: macos-latest
+    #Identifies any jobs that must complete successfully before this job will run.
+    needs: unit-testing
+    steps:
+      - name: List all simulators
+        run: xcrun instruments -s
+      # get UUID  simulator and boot a simulator on mac from  command line
+      - name: Start Simulator
+        run: |
+          UDID=$(
+            xcrun instruments -s |
+            awk \
+              -F ' *[][]' \
+              -v 'device=${{ matrix.device }}' \
+              '$1 == device { print $2 }'
+          )
+          xcrun simctl boot "${UDID:?No Simulator with this name found}"
+      - uses: actions/checkout@v1
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v1
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: ${{ runner.OS }}-flutter-install-cache-${{ env.flutter_version }}
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '${{ env.flutter_version }}'
+          channel: 'stable'
+
+      - name: Create env file
+        run: |
+          touch .env
+          echo API_KEY=${{ secrets.API_KEY }} >> .env
+          cat .env
+      - run: flutter pub get
+      # Run flutter integrate tests
+      - name: Run Flutter Driver tests
+        run: flutter drive --driver=test_driver/integration_test.dart --target=integration_test/main_test.dart
+
+  android-integration:
+    runs-on: macos-latest
+    #creates a build matrix for your jobs
+    strategy:
+      #set of different configurations of the virtual environment.
+      matrix:
+        api-level: [21, 29]
+        target: [default]
+    needs: unit-testing
+    steps:
+      - uses: actions/checkout@v1
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v1
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: ${{ runner.OS }}-flutter-install-cache-${{ env.flutter_version }}
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '${{ env.flutter_version }}'
+          channel: 'stable'
+      - name: Create env file
+        run: |
+          touch .env
+          echo API_KEY=${{ secrets.API_KEY }} >> .env
+          cat .env
+      - name: Run Flutter Driver tests
+        #GitHub Action for installing, configuring and running Android Emulators (work only Mac OS)
+        #https://github.com/ReactiveCircus/android-emulator-runner
+        uses: reactivecircus/android-emulator-runner@v1
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: ${{ matrix.target }}
+          arch: x86_64
+          profile: Nexus 6
+          script: flutter drive --driver=test_driver/integration_test.dart --target=integration_test/main_test.dart      

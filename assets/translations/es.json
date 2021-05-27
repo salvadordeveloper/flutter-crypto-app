@@ -1,0 +1,50 @@
+{
+    "homeTitle" : "Inicio",
+    "openChart" : "Abrir grafica",
+
+    "searchTitle" : "Buscar",
+    "searchBar" : "Buscar moneda...",
+    "noResults" : "Sin resultados",
+
+    "settingsTitle": "Ajustes",
+
+    "languageSection" : "Lenguage",
+    "language": "Idioma",
+    "dataSection" : "Datos",
+    "exchange" : "Exchange",
+    "topPair"  : "Top Par",
+    "designSection" : "Diseño",
+    "appTheme" : "Tema",
+
+    "spanish" : "Español",
+    "english" : "Ingles",
+
+
+    "summary" : "Resumen",
+    "orderbook" : "Orderbook",
+    "trades" : "Trades",
+    "ohlc" : "OHLC",
+
+    "price" : "Precio",
+    "last" : "Ultimo",
+    "high" : "Más alto",
+    "low" : "Más bajo",
+    "change" : "Cambio",
+    "volume" : "Volumen",
+    "quoteVolume" : "Quote Volume",
+    "time" : "Tiempo",
+    "amount" : "Cantidad",
+    "bid" : "Bid",
+    "ask" : "Ask",
+
+    "errorRequestCancelled" : "Request to API server was cancelled",
+    "errorConnectionTimeout" : "Connection timeout with API server",
+    "errorInternetConnection" : "Connection to API server failed due to internet connection",
+    "errorReceiveTimeout" : "Receive timeout in connection with API server",
+    "errorSendTimeout" : "Send timout in connection iwth API server",
+    "errorBadRequest": "Bad request",
+    "errorRequestNotFound": "The requested resource was not found",
+    "errorIntenalServer" : "Internal server error",
+    "errorSomethingWentWrong" : "Something went wrong"
+     
+}

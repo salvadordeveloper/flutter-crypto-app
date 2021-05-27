@@ -1,0 +1,50 @@
+{
+    "homeTitle" : "Home",
+    "openChart" : "Open Chart",
+
+    "searchTitle" : "Search",
+    "searchBar" : "Search coin...",
+    "noResults" : "No results",
+
+    "settingsTitle": "Settings",
+
+    "languageSection" : "Language",
+    "language": "Language",
+    "dataSection" : "Data",
+    "exchange" : "Exchange",
+    "topPair"  : "Top Pair",
+    "designSection" : "Design",
+    "appTheme" : "App theme",
+
+    "spanish" : "Spanish",
+    "english" : "English",
+
+    "summary" : "Summary",
+    "orderbook" : "Orderbook",
+    "trades" : "Trades",
+    "ohlc" : "OHLC",
+
+    "price" : "Price",
+    "last" : "Last",
+    "high" : "High",
+    "low" : "Low",
+    "change" : "Change",
+    "volume" : "Volume",
+    "quoteVolume" : "Quote Volume",
+    "time" : "Time",
+    "amount" : "Amount",
+    "bid" : "Bid",
+    "ask" : "Ask",
+
+    "errorRequestCancelled" : "Request to API server was cancelled",
+    "errorConnectionTimeout" : "Connection timeout with API server",
+    "errorInternetConnection" : "Connection to API server failed due to internet connection",
+    "errorReceiveTimeout" : "Receive timeout in connection with API server",
+    "errorSendTimeout" : "Send timout in connection iwth API server",
+    "errorBadRequest": "Bad request",
+    "errorRequestNotFound": "The requested resource was not found",
+    "errorIntenalServer" : "Internal server error",
+    "errorSomethingWentWrong" : "Something went wrong"
+     
+
+}
