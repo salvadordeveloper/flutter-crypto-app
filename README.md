@@ -21,7 +21,7 @@ Complete Flutter Application with Riverpod & Freezed + Dio for API REST.
 - Favorite Pair
 
 ### Stack
-- Flutter 2.2.0
+- Flutter 2.2.0 (Null Safety)
 - Riverpod + Hooks
 - Freezed
 - Dio
