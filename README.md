@@ -16,7 +16,7 @@ Complete Flutter Application with Riverpod & Freezed + Dio for API REST.
 - OHLC Graph 
 - Search 
 - Light / Dark Theme
-- Multi Lenguage 
+- Multi Language
 - Exchange Selection
 - Favorite Pair
 
