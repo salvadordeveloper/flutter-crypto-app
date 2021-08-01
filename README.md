@@ -16,12 +16,12 @@ Complete Flutter Application with Riverpod & Freezed + Dio for API REST.
 - OHLC Graph 
 - Search 
 - Light / Dark Theme
-- Multi Lenguage 
+- Multi Language
 - Exchange Selection
 - Favorite Pair
 
 ### Stack
-- Flutter 2.2.0
+- Flutter 2.2.0 (Null Safety)
 - Riverpod + Hooks
 - Freezed
 - Dio
