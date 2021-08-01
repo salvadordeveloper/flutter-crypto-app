@@ -273,7 +273,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_hooks:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: flutter_hooks
       url: "https://pub.dartlang.org"
@@ -299,12 +299,12 @@ packages:
     source: hosted
     version: "1.2.0"
   flutter_riverpod:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.4"
+    version: "1.0.0-dev.6"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -368,7 +368,7 @@ packages:
       name: hooks_riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.4"
+    version: "1.0.0-dev.6"
   http_mock_adapter:
     dependency: "direct dev"
     description:
@@ -569,7 +569,7 @@ packages:
       name: riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.4"
+    version: "1.0.0-dev.6"
   settings_ui:
     dependency: "direct main"
     description:

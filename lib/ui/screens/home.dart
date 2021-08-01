@@ -4,16 +4,15 @@ import 'package:cryptocurrency_app/ui/widgets/favorite_pair.dart';
 import 'package:cryptocurrency_app/ui/widgets/pair_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../generated/locale_keys.g.dart';
 
-class HomeScreen extends HookWidget {
+class HomeScreen extends HookConsumerWidget {
   @override
-  Widget build(BuildContext context) {
-    final pairs = useProvider(pairsProvider);
-    final favoritePair = useProvider(favoritePairProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final pairs = ref.watch(pairsProvider);
+    final favoritePair = ref.watch(favoritePairProvider);
     return Container(
       key: Keys.HOME_SCREEN,
       child: Column(

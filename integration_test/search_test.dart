@@ -11,8 +11,8 @@ import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'data/api_data.dart';
 
 void main() {
-  final dioAdapter = DioAdapter();
   final dio = Dio();
+  final dioAdapter = DioAdapter(dio: dio);
   setUpAll(() {
     dio.httpClientAdapter = dioAdapter;
 

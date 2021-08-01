@@ -9,15 +9,11 @@ class AppTheme {
         unselectedItemColor: Colors.white70),
     appBarTheme: AppBarTheme(
       color: Colors.blueGrey,
-      brightness: Brightness.dark,
     ),
     scaffoldBackgroundColor: Colors.white,
-    accentColor: Colors.black54,
-    brightness: Brightness.light,
     cardColor: Colors.grey[500],
     unselectedWidgetColor: Colors.black45,
     focusColor: Colors.black,
-    primarySwatch: Colors.blueGrey,
     textTheme: TextTheme(
       headline1: TextStyle(
           color: Colors.black, fontSize: 40, fontWeight: FontWeight.w500),
@@ -36,6 +32,8 @@ class AppTheme {
       subtitle2: TextStyle(
           color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
     ),
+    colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blueGrey)
+        .copyWith(secondary: Colors.black54),
   );
 
   static final ThemeData dark = ThemeData(
@@ -46,13 +44,9 @@ class AppTheme {
         unselectedItemColor: Colors.white70),
     appBarTheme: AppBarTheme(
       color: Colors.black,
-      brightness: Brightness.dark,
     ),
     scaffoldBackgroundColor: Colors.black,
-    accentColor: Colors.white54,
-    brightness: Brightness.dark,
     focusColor: Colors.white,
-    primarySwatch: Colors.blueGrey,
     textTheme: TextTheme(
         headline1: TextStyle(
             color: Colors.white, fontSize: 40, fontWeight: FontWeight.w500),
@@ -70,5 +64,7 @@ class AppTheme {
             color: Colors.white70, fontSize: 14, fontWeight: FontWeight.normal),
         subtitle2: TextStyle(
             color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+    colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blueGrey)
+        .copyWith(secondary: Colors.white54),
   );
 }

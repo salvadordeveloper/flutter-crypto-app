@@ -11,17 +11,17 @@ import 'ohlc_section.dart';
 import 'order_book_section.dart';
 import 'trades_section.dart';
 
-class DetailsWidget extends HookWidget {
+class DetailsWidget extends HookConsumerWidget {
   final Pair pair;
   const DetailsWidget({Key? key, required this.pair}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final _controller = useTabController(initialLength: 4);
-    final graph = useProvider(graphDataProvider(pair));
-    final summary = useProvider(pairSummaryProvider(pair));
-    final orderBook = useProvider(pairOrderBookProvider(pair));
-    final trades = useProvider(tradesProvider(pair));
+    final graph = ref.watch(graphDataProvider(pair));
+    final summary = ref.watch(pairSummaryProvider(pair));
+    final orderBook = ref.watch(pairOrderBookProvider(pair));
+    final trades = ref.watch(tradesProvider(pair));
 
     return Container(
       child: Column(

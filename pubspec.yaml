@@ -19,33 +19,33 @@ version: 1.0.0+1
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
-  
+
 dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.0
-  flutter_hooks:
-  hooks_riverpod:
+  hooks_riverpod: 1.0.0-dev.6
+  flutter_riverpod: 1.0.0-dev.6
   dio: ^4.0.0
   flutter_dotenv: ^5.0.0
-  fl_chart: ^0.36.1 
+  fl_chart: ^0.36.1
   settings_ui: ^1.0.0
   auto_size_text: ^3.0.0-nullsafety.0
-  flutter_secure_storage: ^4.1.0 
+  flutter_secure_storage: ^4.1.0
   easy_localization: ^3.0.0
   freezed_annotation:
   flutter_candlesticks:
     git: https://github.com/salvadordeveloper/flutter-candlesticks.git
   mockito: ^5.0.9
-  
+
 dev_dependencies:
   integration_test:
     sdk: flutter
   flutter_test:
     sdk: flutter
   http_mock_adapter: ^0.3.2
-  build_runner: 
-  freezed: 
+  build_runner:
+  freezed:
   json_serializable:
   flutter_launcher_icons: ^0.9.0
   flutter_native_splash: ^1.1.8+4

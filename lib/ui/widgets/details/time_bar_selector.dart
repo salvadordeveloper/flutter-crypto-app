@@ -1,13 +1,12 @@
 import 'package:cryptocurrency_app/provider/time_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class TimeBarSelector extends HookWidget {
+class TimeBarSelector extends HookConsumerWidget {
   @override
-  Widget build(BuildContext context) {
-    final time = useProvider(timeDataProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final time = ref.watch(timeDataProvider);
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15),

@@ -4,23 +4,22 @@ import 'package:cryptocurrency_app/models/markets/pair/pair.dart';
 import 'package:cryptocurrency_app/provider/crypto_provider.dart';
 import 'package:cryptocurrency_app/ui/screens/details.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:cryptocurrency_app/constants/utils.dart' as Utils;
 
 import 'line_chart.dart';
 
-final currentPair = ScopedProvider<Pair>(null);
+final currentPair = Provider<Pair>((ref) => Pair(exchange: "", pair: ""));
 
-class PairTile extends HookWidget {
+class PairTile extends HookConsumerWidget {
   const PairTile();
 
   @override
-  Widget build(BuildContext context) {
-    final pair = useProvider(currentPair);
-    final summary = useProvider(pairSummaryProvider(pair));
-    final graph = useProvider(graphDataProvider(pair));
+  Widget build(BuildContext context, WidgetRef ref) {
+    final pair = ref.watch(currentPair);
+    final summary = ref.watch(pairSummaryProvider(pair));
+    final graph = ref.watch(graphDataProvider(pair));
 
     return Container(
       key: Keys.PAIR_TILE,

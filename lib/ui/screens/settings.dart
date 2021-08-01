@@ -4,19 +4,19 @@ import 'package:cryptocurrency_app/models/markets/pair/pair.dart';
 import 'package:cryptocurrency_app/provider/crypto_provider.dart';
 import 'package:cryptocurrency_app/provider/settings_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:settings_ui/settings_ui.dart';
 import '../../generated/locale_keys.g.dart';
 import 'package:cryptocurrency_app/constants/utils.dart' as Utils;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SettingScreen extends HookWidget {
+class SettingScreen extends HookConsumerWidget {
   @override
-  Widget build(BuildContext context) {
-    final settings = useProvider(cryptoSettings);
-    final exchanges = useProvider(exchangesProvider);
-    final pairs = useProvider(pairsProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final settings = ref.watch(cryptoSettings);
+    final exchanges = ref.watch(exchangesProvider);
+    final pairs = ref.watch(pairsProvider);
 
     final details =
         settings.maybeWhen(data: (details) => details, orElse: () => null);
@@ -44,7 +44,7 @@ class SettingScreen extends HookWidget {
                               leading: Icon(Icons.language),
                               onPressed: (BuildContext ctx) =>
                                   showLenguageSelectionDialog(
-                                      context, details.currentLanguage)),
+                                      context, ref, details.currentLanguage)),
                         ],
                       ),
                       SettingsSection(
@@ -55,14 +55,15 @@ class SettingScreen extends HookWidget {
                             subtitle: details.favoriteExchange,
                             leading: Icon(Icons.graphic_eq),
                             onPressed: (BuildContext context) =>
-                                showExchangeSelectDialog(context, exchanges),
+                                showExchangeSelectDialog(
+                                    context, ref, exchanges),
                           ),
                           SettingsTile(
                               title: LocaleKeys.topPair.tr(),
                               subtitle: details.favoritePair,
                               leading: Icon(Icons.language),
                               onPressed: (BuildContext context) =>
-                                  showTopPairSelectDialog(context, pairs)),
+                                  showTopPairSelectDialog(context, ref, pairs)),
                         ],
                       ),
                       SettingsSection(
@@ -74,7 +75,7 @@ class SettingScreen extends HookWidget {
                             leading: Icon(Icons.graphic_eq),
                             onPressed: (BuildContext context) =>
                                 showThemeSelectDialog(
-                                    context, details.themeMode),
+                                    context, ref, details.themeMode),
                           ),
                         ],
                       ),
@@ -88,7 +89,7 @@ class SettingScreen extends HookWidget {
   }
 
   void showLenguageSelectionDialog(
-      BuildContext context, String currentLenguage) {
+      BuildContext context, WidgetRef ref, String currentLenguage) {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
@@ -105,7 +106,7 @@ class SettingScreen extends HookWidget {
                     onChanged: (value) async {
                       await context.setLocale(Locale('en'));
 
-                      context
+                      ref
                           .read(cryptoSettings.notifier)
                           .setLenguage(LocaleKeys.english);
 
@@ -125,7 +126,7 @@ class SettingScreen extends HookWidget {
                     groupValue: LocaleKeys.spanish,
                     onChanged: (value) async {
                       await context.setLocale(Locale('es'));
-                      context
+                      ref
                           .read(cryptoSettings.notifier)
                           .setLenguage(LocaleKeys.spanish);
                       Navigator.pop(context);
@@ -144,8 +145,8 @@ class SettingScreen extends HookWidget {
     );
   }
 
-  void showExchangeSelectDialog(
-      BuildContext context, AsyncValue<List<Exchange>> exchanges) {
+  void showExchangeSelectDialog(BuildContext context, WidgetRef ref,
+      AsyncValue<List<Exchange>> exchanges) {
     showDialog(
         context: context,
         builder: (context) {
@@ -159,7 +160,7 @@ class SettingScreen extends HookWidget {
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: () {
-                              context
+                              ref
                                   .read(cryptoSettings.notifier)
                                   .setFavoriteExchange(data[index].symbol);
 
@@ -182,7 +183,7 @@ class SettingScreen extends HookWidget {
   }
 
   void showTopPairSelectDialog(
-      BuildContext context, AsyncValue<List<Pair>> pairs) {
+      BuildContext context, WidgetRef ref, AsyncValue<List<Pair>> pairs) {
     showDialog(
         context: context,
         builder: (context) {
@@ -200,7 +201,7 @@ class SettingScreen extends HookWidget {
                               children: [
                                 GestureDetector(
                                   onTap: () {
-                                    context
+                                    ref
                                         .read(cryptoSettings.notifier)
                                         .setFavoritePair(data[index].pair);
                                     Navigator.pop(context);
@@ -224,7 +225,8 @@ class SettingScreen extends HookWidget {
         });
   }
 
-  void showThemeSelectDialog(BuildContext context, currentTheme) {
+  void showThemeSelectDialog(
+      BuildContext context, WidgetRef ref, currentTheme) {
     showDialog(
         context: context,
         builder: (context) {
@@ -235,16 +237,14 @@ class SettingScreen extends HookWidget {
                 children: Utils.themeModes
                     .map((data) => GestureDetector(
                           onTap: () {
-                            context
-                                .read(cryptoSettings.notifier)
-                                .setTheme(data);
+                            ref.read(cryptoSettings.notifier).setTheme(data);
                             Navigator.pop(context);
                           },
                           child: Row(
                             children: [
                               Radio<String>(
                                 onChanged: (value) {
-                                  context
+                                  ref
                                       .read(cryptoSettings.notifier)
                                       .setTheme(value!);
                                   Navigator.pop(context);

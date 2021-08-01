@@ -7,16 +7,15 @@ import 'package:cryptocurrency_app/ui/widgets/details/time_bar_selector.dart';
 import 'package:cryptocurrency_app/ui/widgets/line_chart.dart';
 import 'package:cryptocurrency_app/ui/widgets/title_price.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class DetailsScreen extends HookWidget {
+class DetailsScreen extends HookConsumerWidget {
   final Pair pair;
   DetailsScreen({required this.pair});
 
   @override
-  Widget build(BuildContext context) {
-    final graph = useProvider(graphDataProvider(pair));
+  Widget build(BuildContext context, WidgetRef ref) {
+    final graph = ref.watch(graphDataProvider(pair));
 
     return Scaffold(
       key: Keys.DETAILS_SCREEN,
