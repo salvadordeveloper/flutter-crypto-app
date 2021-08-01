@@ -17,7 +17,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 final clientProvider = Provider((ref) => Dio(BaseOptions(headers: {
-      "X-CW-API-Key": env['API_KEY'],
+      "X-CW-API-Key": dotenv.env['API_KEY'],
     }, baseUrl: 'https://api.cryptowat.ch')));
 
 final cryptoRepository =

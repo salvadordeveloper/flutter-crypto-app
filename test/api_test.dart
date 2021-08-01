@@ -16,26 +16,26 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'data/api_data.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
   TestWidgetsFlutterBinding.ensureInitialized();
-  await DotEnv.load();
+  await dotenv.load();
   late ProviderContainer container;
   late DioAdapter dioAdapter;
 
   setUpAll(() async {
+    Dio dio = Dio();
+    dioAdapter = DioAdapter(dio: dio);
     container =
-        ProviderContainer(overrides: [clientProvider.overrideWithValue(Dio())]);
-    dioAdapter = DioAdapter();
+        ProviderContainer(overrides: [clientProvider.overrideWithValue(dio)]);
     container.read(clientProvider).httpClientAdapter = dioAdapter;
   });
 
   test('Dio loads API_KEY from .env', () {
     final container = ProviderContainer();
     final headers = container.read(clientProvider).options.headers;
-    expect(headers['X-CW-API-Key'], env['API_KEY']);
+    expect(headers['X-CW-API-Key'], dotenv.env['API_KEY']);
     // stuff
   });
   group('getPairs', () {
