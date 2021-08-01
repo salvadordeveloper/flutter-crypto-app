@@ -27,7 +27,7 @@ dependencies:
   flutter_hooks:
   hooks_riverpod:
   dio: ^4.0.0
-  flutter_dotenv: ^4.0.0-nullsafety.1
+  flutter_dotenv: ^5.0.0
   fl_chart: ^0.36.1 
   settings_ui: ^1.0.0
   auto_size_text: ^3.0.0-nullsafety.0
@@ -43,7 +43,7 @@ dev_dependencies:
     sdk: flutter
   flutter_test:
     sdk: flutter
-  http_mock_adapter: ^0.2.1
+  http_mock_adapter: ^0.3.2
   build_runner: 
   freezed: 
   json_serializable:
