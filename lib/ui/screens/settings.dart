@@ -35,11 +35,11 @@ class SettingScreen extends HookConsumerWidget {
                     contentPadding: EdgeInsets.zero,
                     sections: [
                       SettingsSection(
-                        title: LocaleKeys.languageSection.tr(),
+                        title: Text(LocaleKeys.languageSection.tr()),
                         tiles: [
                           SettingsTile(
-                              title: LocaleKeys.language.tr(),
-                              subtitle: details.currentLanguage.tr(),
+                              title: Text(LocaleKeys.language.tr()),
+                              value: Text(details.currentLanguage.tr()),
                               leading: Icon(Icons.language),
                               onPressed: (BuildContext ctx) =>
                                   showLenguageSelectionDialog(
@@ -47,30 +47,30 @@ class SettingScreen extends HookConsumerWidget {
                         ],
                       ),
                       SettingsSection(
-                        title: LocaleKeys.dataSection.tr(),
+                        title: Text(LocaleKeys.dataSection.tr()),
                         tiles: [
                           SettingsTile(
-                            title: LocaleKeys.exchange.tr(),
-                            subtitle: details.favoriteExchange,
+                            title: Text(LocaleKeys.exchange.tr()),
+                            value: Text(details.favoriteExchange),
                             leading: Icon(Icons.graphic_eq),
                             onPressed: (BuildContext context) =>
                                 showExchangeSelectDialog(
                                     context, ref, exchanges),
                           ),
                           SettingsTile(
-                              title: LocaleKeys.topPair.tr(),
-                              subtitle: details.favoritePair,
+                              title: Text(LocaleKeys.topPair.tr()),
+                              value: Text(details.favoritePair),
                               leading: Icon(Icons.language),
                               onPressed: (BuildContext context) =>
                                   showTopPairSelectDialog(context, ref, pairs)),
                         ],
                       ),
                       SettingsSection(
-                        title: LocaleKeys.designSection.tr(),
+                        title: Text(LocaleKeys.designSection.tr()),
                         tiles: [
                           SettingsTile(
-                            title: LocaleKeys.appTheme.tr(),
-                            subtitle: details.themeMode,
+                            title: Text(LocaleKeys.appTheme.tr()),
+                            value: Text(details.themeMode),
                             leading: Icon(Icons.graphic_eq),
                             onPressed: (BuildContext context) =>
                                 showThemeSelectDialog(
