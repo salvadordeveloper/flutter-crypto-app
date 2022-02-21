@@ -27,7 +27,7 @@ final searchTextProvider = StateProvider<String>((ref) => "");
 
 final pairsSearchProvider = FutureProvider<List<Pair>>((ref) async {
   final pairs = ref.watch(pairsProvider);
-  final search = ref.watch(searchTextProvider).state;
+  final search = ref.watch(searchTextProvider);
 
   List<Pair> list = [];
   pairs.maybeWhen(
@@ -114,8 +114,8 @@ final tradesProvider =
 });
 
 final graphDataProvider = FutureProvider.family<Graph, Pair>((ref, pair) async {
-  String interval = ref.watch(timeDataProvider).state.periods;
-  String fromHours = ref.watch(timeDataProvider).state.before;
+  String interval = ref.watch(timeDataProvider).periods;
+  String fromHours = ref.watch(timeDataProvider).before;
   String before = "";
   if (fromHours.isNotEmpty) {
     before = (DateTime.now()

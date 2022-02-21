@@ -1,6 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final navigationProvider = StateNotifierProvider((ref) => NavigationNotifier());
+final navigationProvider = StateNotifierProvider<NavigationNotifier, PageModel>(
+    (ref) => NavigationNotifier());
 
 enum NavigationBarEvent { HOME, SEARCH, SETTINGS }
 

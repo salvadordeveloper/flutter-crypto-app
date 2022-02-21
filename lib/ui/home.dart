@@ -13,7 +13,7 @@ class Home extends HookConsumerWidget {
   const Home({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final navigation = ref.watch(navigationProvider);
+    final PageModel navigation = ref.watch(navigationProvider);
 
     return Scaffold(
       body: currentScreen(navigation.index),

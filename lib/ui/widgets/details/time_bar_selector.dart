@@ -5,8 +5,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class TimeBarSelector extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final time = ref.watch(timeDataProvider);
-
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15),
       child: Row(
@@ -16,19 +14,21 @@ class TimeBarSelector extends HookConsumerWidget {
               .mapIndexed(
                 (e, i) => InkWell(
                   onTap: () {
-                    time.state = e;
+                    ref.read(timeDataProvider.notifier).state = e;
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 3, horizontal: 8),
                     decoration: BoxDecoration(
-                        color: time.state.name == e.name
+                        color: ref.read(timeDataProvider.notifier).state.name ==
+                                e.name
                             ? Theme.of(context).cardColor
                             : Colors.transparent,
                         borderRadius: BorderRadius.all(Radius.circular(5))),
                     child: Center(
                       child: Text(
                         e.name,
-                        style: time.state.name == e.name
+                        style: ref.read(timeDataProvider.notifier).state.name ==
+                                e.name
                             ? Theme.of(context)
                                 .textTheme
                                 .headline3!

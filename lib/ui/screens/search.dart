@@ -30,7 +30,7 @@ class SearchScreen extends HookConsumerWidget {
                   ),
                   child: TextFormField(
                     key: Keys.SEARCH_TEXT_FIELD,
-                    initialValue: ref.read(searchTextProvider).state,
+                    initialValue: ref.read(searchTextProvider),
                     style: TextStyle(color: Colors.white, fontSize: 21),
                     decoration: new InputDecoration(
                         prefixIcon: new Icon(Icons.search,
@@ -39,7 +39,7 @@ class SearchScreen extends HookConsumerWidget {
                         hintStyle: new TextStyle(color: Colors.white),
                         border: InputBorder.none),
                     onChanged: (value) =>
-                        {ref.read(searchTextProvider).state = value},
+                        {ref.read(searchTextProvider.notifier).state = value},
                   ),
                 ),
                 Expanded(
