@@ -3,7 +3,7 @@ name:  test
 # Trigger the workflow on push or pull request
 on: [push,pull_request_review]
 env:
-  flutter_version: "2.2.0"
+  flutter_version: "2.10.2"
 
 #A workflow run is made up of one or more jobs. Jobs run in parallel by default.
 jobs:

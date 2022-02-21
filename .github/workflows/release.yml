@@ -6,7 +6,7 @@ on:
       - 'v*'
 
 env:
-  flutter_version: "2.2.0"
+  flutter_version: "2.10.2"
 
 jobs:
   build_deploy:
