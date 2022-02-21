@@ -45,3 +45,5 @@ coverage/
 
 .env
 ios/build/
+pubspec.lock
+
