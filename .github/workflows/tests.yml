@@ -50,26 +50,17 @@ jobs:
       #set of different configurations of the virtual environment.
       matrix:
         device:
-          - "iPhone 8 (14.4)"
-          - "iPhone 12 Pro Max (14.4)"
+          - "iPhone 8"
+          - "iPhone 13 Pro"
       fail-fast: false
     runs-on: macos-latest
     #Identifies any jobs that must complete successfully before this job will run.
     needs: unit-testing
     steps:
-      - name: List all simulators
-        run: xcrun instruments -s
-      # get UUID  simulator and boot a simulator on mac from  command line
       - name: Start Simulator
-        run: |
-          UDID=$(
-            xcrun instruments -s |
-            awk \
-              -F ' *[][]' \
-              -v 'device=${{ matrix.device }}' \
-              '$1 == device { print $2 }'
-          )
-          xcrun simctl boot "${UDID:?No Simulator with this name found}"
+      - uses: futureware-tech/simulator-action@v1
+        with:
+          model: '${{matrix.device}}'
       - uses: actions/checkout@v2
       - name: Cache Flutter dependencies
         uses: actions/cache@v2
