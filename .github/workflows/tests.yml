@@ -58,7 +58,7 @@ jobs:
     needs: unit-testing
     steps:
       - name: Start Simulator
-      - uses: futureware-tech/simulator-action@v1
+        uses: futureware-tech/simulator-action@v1
         with:
           model: '${{matrix.device}}'
       - uses: actions/checkout@v2
