@@ -1,6 +1,5 @@
 import 'package:cryptocurrency_app/provider/time_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class TimeBarSelector extends HookConsumerWidget {

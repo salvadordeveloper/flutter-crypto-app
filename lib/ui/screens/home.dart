@@ -3,7 +3,6 @@ import 'package:cryptocurrency_app/provider/crypto_provider.dart';
 import 'package:cryptocurrency_app/ui/widgets/favorite_pair.dart';
 import 'package:cryptocurrency_app/ui/widgets/pair_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../generated/locale_keys.g.dart';

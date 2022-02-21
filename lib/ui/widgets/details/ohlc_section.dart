@@ -1,6 +1,5 @@
 import 'package:cryptocurrency_app/models/graph/graph/graph.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_candlesticks/flutter_candlesticks.dart';
 
 class OHLCSection extends StatelessWidget {

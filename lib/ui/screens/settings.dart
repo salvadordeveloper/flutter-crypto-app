@@ -9,7 +9,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:settings_ui/settings_ui.dart';
 import '../../generated/locale_keys.g.dart';
 import 'package:cryptocurrency_app/constants/utils.dart' as Utils;
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SettingScreen extends HookConsumerWidget {
   @override

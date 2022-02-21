@@ -1,6 +1,5 @@
 import 'package:cryptocurrency_app/models/orderbook/orderbook/orderbook.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../../generated/locale_keys.g.dart';
 
