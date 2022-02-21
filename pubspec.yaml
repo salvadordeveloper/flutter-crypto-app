@@ -31,7 +31,7 @@ dependencies:
   fl_chart: ^0.36.1
   settings_ui: ^2.0.2
   auto_size_text: ^3.0.0-nullsafety.0
-  flutter_secure_storage: ^4.1.0
+  flutter_secure_storage: ^5.0.2
   easy_localization: ^3.0.0
   freezed_annotation:
   flutter_candlesticks:
