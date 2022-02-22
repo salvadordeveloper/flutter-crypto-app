@@ -35,9 +35,9 @@ jobs:
       # https://github.com/ncipollo/release-action
       - name: Extract release notes
         id: extract-release-notes
-        uses: ffurrer2/extract-release-notes@v2
+        uses: ffurrer2/extract-release-notes@v1
       - name: Create a Release APK
-        uses: ncipollo/release-action@v2
+        uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/apk/release/*.apk"
           token: ${{ secrets.GITHUB_TOKEN }}
