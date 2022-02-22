@@ -5,16 +5,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
+
+## [1.0.1] - 2021-05-27
+### Update
+
+## Changes
+- Flutter Upgrade
+- Riverpod Upgrade
+- Android Upgrade
+- GitHub Actions for Integration Testing Fixed
+- Settings UI Updated
+
 ## [1.0.0] - 2021-05-27
-### First version 
+### First version
 
 ## Features
 - API REST (CryptoWatch)
 - Linear Graph View (Hour, Day, Week, etc)
-- OHLC Graph 
-- Search 
+- OHLC Graph
+- Search
 - Light / Dark Theme
-- Multi Lenguage 
+- Multi Lenguage
 - Exchange Selection
 - Favorite Pair
 
